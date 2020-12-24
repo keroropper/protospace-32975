@@ -26,13 +26,18 @@ def show
   @comments = @prototype.comments.includes(:user) #投稿に紐づく全てのコメントを代入
 end
 
+# def edit
+
+#   unless 
+#     redirect_to action: :index
+#   end
+# end
 def edit
-  @prototype = Prototype.find(params[:id])
-  
-  unless @prototype
+  unless current_user.id == @prototype.user.id
     redirect_to action: :index
   end
 end
+
 
 def update
   if @prototype.update(prototype_params)

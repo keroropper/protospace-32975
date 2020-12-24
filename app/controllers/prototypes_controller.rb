@@ -13,6 +13,15 @@ def new
 end
 
 def create
+  @prototype = Prototype.new(prototype_params)
+  if @prototype.save
+     redirect_to root_path
+  else
+    render :new
+  end
+end
+def create
+  
   if Prototype.create(prototype_params)
      redirect_to root_path
   else
@@ -66,10 +75,6 @@ def set_prototype
   @prototype = Prototype.find(params[:id])
 end
 
-# def move_to_index
-#   unless user_signed_in?
-#     redirect_to action: :index
-#   end
-# end
+
 
 end

@@ -20,14 +20,6 @@ def create
     render :new
   end
 end
-def create
-  
-  if Prototype.create(prototype_params)
-     redirect_to root_path
-  else
-    render :new
-  end
-end
 
 def show
   @comment = Comment.new
@@ -35,17 +27,9 @@ def show
 end
 
 def edit
-  prototype = Prototype.new
-  prototypes = prototype.user_id
-  unless prototypes
-    redirect_to action: :index
-  end
-end
-
-def edit
-  prototype = Prototype.new
+  @prototype = Prototype.find(params[:id])
   
-  unless prototypes.user_id
+  unless @prototype
     redirect_to action: :index
   end
 end
